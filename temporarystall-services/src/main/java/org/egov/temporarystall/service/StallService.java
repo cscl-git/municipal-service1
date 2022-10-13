@@ -216,9 +216,30 @@ public class StallService {
 //			updatePaymentStatus();
 			
 			List<StallApplication> StallApplicationresult = repository.getStallApplication(StallApplication);
+			
+			if(StallApplication.getMobileno() != null) {
+			for (StallApplication stallApplication : StallApplicationresult) {
+				if(stallApplication.getApplicationId() != null) {
+					String updatePaymentStatus = updatePaymentStatus(stallApplication);
+					
+					StallApplication.setPaymentstatus(updatePaymentStatus);
+					
+					StallRequest infoWrapper = StallRequest.builder().stallApplicationRequest(StallApplication).build();
+					
+					producer.push(config.getSTALLApplicationUpdatepaymentstatusTopic(), infoWrapper );
+					
+				}
+			}
+			}
+			
+			List<StallApplication> StallApplicationresultfinal = repository.getStallApplication(StallApplication);
+			
+//			if(StallApplicationresult.size() == 1)
+//			StallApplicationresult.get(0).setPaymentstatus(updatePaymentStatus);
+			
 			return new ResponseEntity<>(ResponseInfoWrapper.builder()
 					.responseInfo(ResponseInfo.builder().status(CommonConstants.SUCCESS).build())
-					.responseBody(StallApplicationresult).build(), HttpStatus.OK);
+					.responseBody(StallApplicationresultfinal).build(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CustomException(CommonConstants.STALL_APPLICATION_EXCEPTION_CODE, e.getMessage());
