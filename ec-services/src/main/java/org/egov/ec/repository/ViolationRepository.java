@@ -243,8 +243,9 @@ public class ViolationRepository {
 				new Object[] { violation.getStatus(), violation.getStatus(), violation.getFromDate(),
 						violation.getFromDate(), violation.getToDate(), violation.getToDate(),
 						violation.getEncroachmentType(), violation.getEncroachmentType(), violation.getSiName(),
-						violation.getSiName(), violation.getSector(), violation.getSector(), violation.getChallanId(),
-						violation.getChallanId() },
+						violation.getSiName(), violation.getSector(), violation.getSector(),
+						violation.getLicenseNoCov(), violation.getLicenseNoCov(),
+						violation.getChallanId(), violation.getChallanId() },
 				violationDetailRowMapperV2);
 
 		return violationDetailList;
