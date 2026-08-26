@@ -103,7 +103,7 @@ public class ApplicationService {
 						if (rolecode.startsWith("ES_BB")) {
 							employeeBranches.add(PSConstants.APPLICATION_BUILDING_BRANCH);
 						}
-						if (rolecode.startsWith("ES_MM")) {
+						if (rolecode.startsWith("ES_MM") || rolecode.startsWith("SAMPARK")) {
 							employeeBranches.add(PSConstants.APPLICATION_MANI_MAJRA);
 						}
 						if (rolecode.equalsIgnoreCase("ES_ADDITIONAL_COMMISSIONER")) {
